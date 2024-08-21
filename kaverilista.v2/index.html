@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Kaverilista</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+
+<main>
+    <section>
+        <h1 class="title">Kaverilista</h1>
+    </section>
+
+    <div class="tekstikenttä">
+        <form>
+            <input type="text" id="kaverinNimi" placeholder="Lisää Kaveri">
+        </form>
+
+        <button id="lisääNappi" value="click" onclick="lisäys()">Lisää</button>
+        <button id="poistaNappi" value="click" onclick="poisto()">Poista</button>
+        <button id="järjestäNappi" value="click" onclick="lajittelu()">Järjestä</button>
+    </div>
+
+    <div id="div1"> 
+    </div>
+
+
+</main>
+
+
+</body>
+</html>
+<script>
+
+    function testi(){
+        console.log(nimet)
+    }
+
+
+    function lisäys(){
+        const input = document.getElementById("kaverinNimi").value;
+        const para = document.createElement("p");
+        const node = document.createTextNode(input); 
+        para.appendChild(node);
+
+        const element = document.getElementById("div1");
+        element.appendChild(para);
+
+       
+        // Nollaa tekstikentän
+        document.getElementById("kaverinNimi").value = "";
+    }
+
+    function poisto(){
+        const input = document.getElementById("kaverinNimi").value;
+        const element = document.getElementById("div1");
+
+        const children = element.getElementsByTagName("p");
+        for (let i = 0; i < children.length; i++) {
+            if (children[i].textContent === input) {
+                element.removeChild(children[i]);
+                break; 
+            }
+        }
+
+
+        document.getElementById("kaverinNimi").value = '';
+    }
+
+    function lajittelu(){
+        const element = document.getElementById("div1");
+        const children = Array.from(element.getElementsByTagName("p")); 
+        
+        children.sort((a, b) => a.textContent.localeCompare(b.textContent));
+        
+        
+        element.innerHTML = "";
+        
+        children.forEach(child => element.appendChild(child));
+    }
+
+    </script>

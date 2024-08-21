@@ -1,0 +1,9 @@
+.tekstikenttä {
+    display: flex;
+    align-items: left;
+}
+
+
+button {
+    margin-left: 10px;
+}
